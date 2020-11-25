@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>登录</title>
+  <script src="../static/jq/jquery-2.1.0.js"></script>
+{#  '''#}
+{#  ajax使用有5步#}
+{#  1创建异步对象#}
+{#  2设置请求方式和请求地址#}
+{#  3发送请求#}
+{#  4监听状态的变化#}
+{#  5处理返回的结果#}
+{#  '''#}
+  <script>
+
+
+    function send_data(){
+
+        var u1 =  $("#u1").val();
+        var p1 =  $("#p1").val();
+
+        if(u1 != "" && p1 != ""){
+
+            $.ajax({
+             type: "post",
+
+             url: "/data_login/",
+             data: {
+                 "username":u1,
+                 'password':p1
+             },
+             dataType: "json",
+             success: function(data){
+                 console.log(data);
+                 alert("提交成功!");
+
+             }
+         });
+        }else{
+            alert("不能为空");
+        }
+    }
+
+  </script>
+</head>
+<body>
+
+
+<p>登录</p>
+
+
+{#通过ajax给后端flask进行传递删数据#}
+username:<input id="u1" value="">
+
+<br><br><br><br>
+
+password:<input id="p1" value="">
+<a href="javaScript:send_data()">密码提交</a>
+</body>
+</html>
